@@ -15,7 +15,7 @@ function launchChromeAndRunLighthouse(url, opts, conf = null) {
   return puppeteer
     .launch({ 
       headless: false,
-      executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+      executablePath: '<your-path-to-chrome>',
       chromeFlags: opts.chromeFlags })
     .then((brower) => {
       opts.port = (new URL(brower.wsEndpoint())).port;
