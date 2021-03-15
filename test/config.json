@@ -1,0 +1,12 @@
+{
+  "extends": "lighthouse:default",
+  "settings": {
+    "onlyCategories": ["accessibility"],
+    "formFactor" : "desktop",
+    "screenEmulation" : {
+      "width": 1240,
+      "height" : 846,
+      "mobile" : false
+    }
+  }
+}

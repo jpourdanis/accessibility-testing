@@ -1,0 +1,26 @@
+{
+  "name": "jpourdanis",
+  "version": "1.0.0",
+  "description": "Example using lighthouse and chrome-launcher for running lighthouse performance tests on your project with mocha",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./test/lighthouse.test.js"
+  },
+  "keywords": [
+    "lighthouse",
+    "google-chrome",
+    "mocha",
+    "performance",
+    "test"
+  ],
+  "author": "jpourdanis",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "cli-table": "^0.3.1",
+    "lighthouse": "^7.2.0",
+    "mocha": "^6.1.4",
+    "puppeteer": "^8.0.0",
+    "url": "0.11.0"
+  }
+}
