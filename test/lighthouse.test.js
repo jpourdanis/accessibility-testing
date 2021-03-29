@@ -1,8 +1,8 @@
 const { assert } = require("chai");
 const lighthouse = require("lighthouse");
-const puppeteer = require('puppeteer');
+const puppeteer = require("puppeteer");
 const Table = require("cli-table");
-const {URL} = require('url');
+const { URL } = require("url");
 
 const config = require("./config.json");
 
@@ -13,25 +13,33 @@ const testUrl = "https://the-internet.herokuapp.com/large";
 
 function launchChromeAndRunLighthouse(url, opts, conf = null) {
   return puppeteer
-    .launch({ 
+    .launch({
       headless: false,
-      executablePath: '<your-path-to-chrome>',
-      chromeFlags: opts.chromeFlags })
+      executablePath: "<your-path-to-chrome>",
+      chromeFlags: opts.chromeFlags,
+    })
     .then((brower) => {
-      opts.port = (new URL(brower.wsEndpoint())).port;
+      opts.port = new URL(brower.wsEndpoint()).port;
       return lighthouse(url, opts, conf).then((res) =>
         /** use results.lhr for the JS-consumeable output
          * use results.report for the HTML/JSON/CSV output as a string
          * use results.artifacts for the trace/screenshots/other specific case you need (rarer)
          * https://github.com/GoogleChrome/lighthouse/blob/master/types/lhr.d.ts
          */
-         brower.close().then(() => res.lhr)
+        brower.close().then(() => res.lhr)
       );
     });
 }
 
 const opts = {
-  chromeFlags: ["--disable-gpu", "--show-paint-rects", "--ignore-certificate-errors", "--no-sandbox", "--disable-dev-shm-usage" , "--disable-setuid-sandbox"],
+  chromeFlags: [
+    "--disable-gpu",
+    "--show-paint-rects",
+    "--ignore-certificate-errors",
+    "--no-sandbox",
+    "--disable-dev-shm-usage",
+    "--disable-setuid-sandbox",
+  ],
 };
 
 describe("Lighthouse Testing", function () {
@@ -48,8 +56,8 @@ describe("Lighthouse Testing", function () {
     });
   });
 
-  it("should have accessibility score greater than 80", (done) => { 
-    assert.equal(results.accessibility > 0.8, true);
+  it("should have accessibility score greater than 90", (done) => {
+    assert.isAbove(results.accessibility, 0.9);
     done();
   });
 
