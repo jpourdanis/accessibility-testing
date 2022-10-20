@@ -4,7 +4,8 @@
   "description": "Example using lighthouse and chrome-launcher for running lighthouse performance tests on your project with mocha",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./test/lighthouse.test.js"
+    "test": "mocha ./test/lighthouse.test.js",
+    "test:accessibility": "npx cypress run --spec '**/**/accessibility.cy.js' --browser=chrome --headed"
   },
   "keywords": [
     "lighthouse",
@@ -18,9 +19,13 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "cli-table": "^0.3.1",
+    "cypress": "^10.10.0",
     "lighthouse": "^7.2.0",
     "mocha": "^6.1.4",
     "puppeteer": "^8.0.0",
     "url": "0.11.0"
+  },
+  "dependencies": {
+    "cypress-audit": "^1.1.0"
   }
 }
